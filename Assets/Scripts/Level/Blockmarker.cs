@@ -11,5 +11,5 @@ public class BlockMarker : MonoBehaviour
     public string blockType = "square";
     public int health = 3;
 
-    // rotation is read directly from transform.eulerAngles.z at export time
+    
 }

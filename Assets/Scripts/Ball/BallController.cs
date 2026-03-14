@@ -18,6 +18,8 @@ public class BallController : MonoBehaviour
     private float lastCollisionTime;
     private bool isDragging = false;
 
+    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -63,10 +65,12 @@ public class BallController : MonoBehaviour
 
             if (spawner != null)
             {
-                spawner.SpawnBalls(transform.position.x);
+                spawner.SpawnBalls(transform.position.x, transform.position.y);
             }
         }
     }
+    public Vector2 GetVelocity() => rb.linearVelocity;
+    public void SetVelocity(Vector2 v) => rb.linearVelocity = v;
 
     void PhysicsLimits()
     {

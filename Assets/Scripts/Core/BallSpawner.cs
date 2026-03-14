@@ -9,7 +9,7 @@ public class BallSpawner : MonoBehaviour
 
     public int ballCount = 10;
 
-    public float spawnHeight = 8f;
+    //public float spawnHeight = 8f;
     public float spawnDelay = 0.25f;
 
     private int ballsLeft;
@@ -20,16 +20,23 @@ public class BallSpawner : MonoBehaviour
         UpdateUI();
     }
 
-    public void SpawnBalls(float xPosition)
+    public void SpawnBalls(float xPosition, float yPosition)
     {
-        StartCoroutine(SpawnRoutine(xPosition));
+        
+        StartCoroutine(SpawnRoutine(xPosition, yPosition));
     }
 
-    private IEnumerator SpawnRoutine(float xPos)
+    public void SpawnBalls(float xPosition, float yPosition, int num)
     {
+        StartCoroutine(SpawnRoutine(xPosition, yPosition, num));
+    }
+
+    private IEnumerator SpawnRoutine(float xPos, float yPos)
+    {
+        yield return new WaitForSeconds(spawnDelay);
         for (int i = 0; i < ballCount; i++)
         {
-            Vector3 spawnPos = new Vector3(xPos, spawnHeight, 0);
+            Vector3 spawnPos = new Vector3(xPos, yPos, 0);
             GameObject ball = Instantiate(ballPrefab, spawnPos, Quaternion.identity);
 
             Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
@@ -42,6 +49,27 @@ public class BallSpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnDelay);
         }
     }
+
+    private IEnumerator SpawnRoutine(float xPos, float yPos, int num)
+    {
+        yield return new WaitForSeconds(spawnDelay);
+        for (int i = 0; i < num; i++)
+        {
+            Vector3 spawnPos = new Vector3(xPos, yPos, 0);
+            GameObject ball = Instantiate(ballPrefab, spawnPos, Quaternion.identity);
+
+            Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
+            if (rb != null)
+                rb.gravityScale = 1;
+
+            ballsLeft--;
+            UpdateUI();
+
+            yield return new WaitForSeconds(spawnDelay);
+        }
+    }
+
+
 
     void UpdateUI()
     {
