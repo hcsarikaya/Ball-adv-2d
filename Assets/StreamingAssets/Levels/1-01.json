@@ -1,0 +1,36 @@
+{
+    "levelId": "1-01",
+    "mode": "advancing",
+    "columns": 11,
+    "cellSize": 1.0,
+    "blocks": [
+        {
+            "blockType": "square",
+            "col": 5,
+            "row": 11,
+            "health": 3,
+            "rotation": 0.0
+        },
+        {
+            "blockType": "square",
+            "col": 6,
+            "row": 11,
+            "health": 3,
+            "rotation": 0.0
+        },
+        {
+            "blockType": "square",
+            "col": 8,
+            "row": 7,
+            "health": 3,
+            "rotation": 26.814746856689454
+        },
+        {
+            "blockType": "square",
+            "col": 4,
+            "row": 11,
+            "health": 3,
+            "rotation": 0.0
+        }
+    ]
+}
